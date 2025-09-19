@@ -11,14 +11,14 @@
 
 - Goal: Implement reflective caustics on planar walls for a Unity URP project (PC).
 - Key folders:
-  - Assets/CausticsReflective/ - Scripts, shaders, materials, demo assets
-  - .github/workflows/ - CI for tests and builds (GameCI)
-  - .github/ISSUE_TEMPLATE/ - Issue forms RC-001..RC-012
+  - `Assets/CausticsReflective/` - Scripts, shaders, materials, demo assets
+  - `.github/workflows/` - CI for tests and builds (GameCI)
+  - `.github/ISSUE_TEMPLATE/` - Issue forms RC-001..RC-012
 
 ## What you (the agent) SHOULD do
 
-- Work in **small branches**: eature/rc-00x-<slug>
-- Always include **closes #<issue-number>** in PR descriptions
+- Work in **small branches**: `feature/rc-00x-<slug>`
+- Always include **`closes #<issue-number>`** in PR descriptions
 - Run **local checks** listed below before opening a PR
 - Keep changes scoped to the referenced issue
 
@@ -26,37 +26,39 @@
 
 - Do not attempt to install or run Unity locally in this environment
   - All Unity tests and builds are handled by **GitHub Actions / GameCI**
-- Do not push directly to main
+- Do not push directly to `main`
 
 ## Check commands (run these in the container)
 
-`ash
+```bash
 # Lint GitHub Actions, Markdown, YAML
 npx --yes markdownlint-cli2 "**/*.md" "#node_modules"
-curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash | bash -s -- -b ./.bin
+curl -sSfL \
+  https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash \
+  | bash -s -- -b ./.bin
 ./.bin/actionlint
 pipx install yamllint || pip install --user yamllint
 ~/.local/bin/yamllint -s .
-`
+```
 
 If any lints fail, fix them before creating a PR.
 
 ## CI (GameCI)
 
-- Unity tests (game-ci/unity-test-runner@v4) and builds (game-ci/unity-builder@v4) run in GitHub Actions
-- Secrets required: UNITY_LICENSE, UNITY_EMAIL, UNITY_PASSWORD
-- See .github/workflows/unity-ci.yml
+- Unity tests (`game-ci/unity-test-runner@v4`) and builds (`game-ci/unity-builder@v4`) run in GitHub Actions
+- Secrets required: `UNITY_LICENSE`, `UNITY_EMAIL`, `UNITY_PASSWORD`
+- See `.github/workflows/unity-ci.yml`
 
 ## Branch & PR policy
 
-- Branch: eature/rc-00x-<slug>（例: eature/rc-003-gen-pass）
-- PR title: [RC-00x] <short summary>
+- Branch: `feature/rc-00x-<slug>`（例: `feature/rc-003-gen-pass`）
+- PR title: `[RC-00x] <short summary>`
 - Include in PR body:
-  - Context: link to the issue（例: RC-003）
+  - Context: link to the issue（例: `RC-003`）
   - What changed: bullet list
   - How to test: scene name, steps
   - Perf note: frame time snapshot if relevant
-  - closes #<issue-number>
+  - `closes #<issue-number>`
 - Request review from code owners
 
 ## Security / Internet access
@@ -66,13 +68,17 @@ If any lints fail, fix them before creating a PR.
 
 ## How to delegate to Codex
 
-- Start a cloud task from ChatGPT, an IDE integration, or mention @codex on GitHub
-- For code review on a PR, comment @codex review
+- Start a cloud task from ChatGPT, an IDE integration, or mention `@codex` on GitHub
+- For code review on a PR, comment `@codex review`
 
 ### Concrete task prompts (examples)
 
-- 「RC-003 GenPass を issue 通りに実装してください。ブランチは eature/rc-003-gen-pass。Lint を実行し、closes #<issue-number> と簡潔なテスト計画を含む PR を作成してください。」
-- 「RC-005 Composite Pass で深度→ワールド座標再構成と平面マスクを追加してください。README を更新し、Lint を通し、スクリーンショットを添付した PR をお願いします。」
+- 「RC-003 GenPass を Issue の指示通りに実装してください。ブランチは
+  `feature/rc-003-gen-pass`。Lint を実行し、`closes #<issue-number>` と簡潔な
+  テスト計画を含む PR を作成してください。」
+- 「RC-005 Composite Pass で深度からワールド座標の復元と平面マスクを追加し、
+  README を更新してください。Lint を通し、スクリーンショットを添付した PR
+  をお願いします。」
 
 ## Definition of Done (project-wide)
 
