@@ -1,9 +1,10 @@
+---
 name: Lint (actions / markdown / yaml)
 
 on:
-  pull_request:
+  pull_request: {}
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint:
