@@ -1,7 +1,8 @@
+---
 name: Sync Labels
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
   push:
     paths:
       - .github/labels.yml
@@ -21,4 +22,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           yaml_file: .github/labels.yml
           sync: true
-
