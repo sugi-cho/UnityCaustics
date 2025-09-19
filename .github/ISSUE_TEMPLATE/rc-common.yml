@@ -1,7 +1,8 @@
+---
 name: RC – Generic Issue
 description: 反射カスティクス（URP/PC）用の汎用テンプレート
 title: "[RC-XXX] <短い要約>"
-labels: ["caustics","URP","rendering","pc"]
+labels: ["caustics", "URP", "rendering", "pc"]
 body:
   - type: textarea
     id: background

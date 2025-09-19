@@ -1,7 +1,8 @@
+---
 name: RC-008 – AABB Clip
 description: 合成領域を平面のスクリーンAABBに限定して負荷削減
 title: "[RC-008] 合成領域のAABBクリップによる描画負荷削減"
-labels: ["perf","rendering"]
+labels: ["perf", "rendering"]
 body:
   - type: checkboxes
     id: tasks

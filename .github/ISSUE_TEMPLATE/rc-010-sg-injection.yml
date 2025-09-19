@@ -1,7 +1,8 @@
+---
 name: RC-010 – ShaderGraph Injection
 description: Subgraph によるマテリアル注入での合成パス提供
 title: "[RC-010] マテリアル注入（Shader Graph Subgraph）での合成パス提供"
-labels: ["shader-graph","integration"]
+labels: ["shader-graph", "integration"]
 body:
   - type: checkboxes
     id: tasks

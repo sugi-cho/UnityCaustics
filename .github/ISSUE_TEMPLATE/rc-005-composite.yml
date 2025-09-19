@@ -1,7 +1,8 @@
+---
 name: RC-005 – Composite Pass
 description: スクリーン空間で該当平面のみに合成（AfterRenderingTransparents）
 title: "[RC-005] ReflectiveCausticsCompositePass（スクリーン空間合成）"
-labels: ["URP","rendering"]
+labels: ["URP", "rendering"]
 body:
   - type: textarea
     id: deliverables

@@ -1,7 +1,8 @@
+---
 name: RC-006 – Debug & UI
 description: 内部量の可視化とランタイム調整UI
 title: "[RC-006] デバッグ表示（R/ detJ/ 距離/シャドウ）とIMGUI"
-labels: ["debug","tools"]
+labels: ["debug", "tools"]
 body:
   - type: checkboxes
     id: tasks

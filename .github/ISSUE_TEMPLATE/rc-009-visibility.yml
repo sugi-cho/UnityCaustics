@@ -1,7 +1,8 @@
+---
 name: RC-009 – Visibility
 description: 水面→壁の可視性（遮蔽物）による減衰の近似
 title: "[RC-009] 水面→壁の可視性（遮蔽物）による減衰の簡易対応"
-labels: ["feature","lighting"]
+labels: ["feature", "lighting"]
 body:
   - type: checkboxes
     id: tasks

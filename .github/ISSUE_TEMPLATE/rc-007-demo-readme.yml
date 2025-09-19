@@ -1,7 +1,8 @@
+---
 name: RC-007 – Demo & README
 description: 最小デモシーンと手順書の整備
 title: "[RC-007] デモシーン作成とREADME（セットアップ手順）"
-labels: ["demo","docs"]
+labels: ["demo", "docs"]
 body:
   - type: textarea
     id: deliverables

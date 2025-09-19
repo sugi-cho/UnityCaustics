@@ -1,7 +1,8 @@
+---
 name: RC-004 – Blur & Temporal
 description: 生成RTのセパレートガウシアン & 任意のテンポラル蓄積
 title: "[RC-004] 生成RTのブラー（横/縦）とTemporal蓄積（任意）"
-labels: ["shader","fx","perf"]
+labels: ["shader", "fx", "perf"]
 body:
   - type: textarea
     id: deliverables

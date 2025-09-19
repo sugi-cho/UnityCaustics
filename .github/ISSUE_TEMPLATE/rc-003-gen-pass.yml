@@ -1,7 +1,8 @@
+---
 name: RC-003 – GenPass
 description: 反射カスティクス生成パス（BeforeRenderingTransparents）
 title: "[RC-003] ReflectiveCausticsRendererFeature + GenPass（生成）"
-labels: ["URP","shader","rendering","pc"]
+labels: ["URP", "shader", "rendering", "pc"]
 body:
   - type: textarea
     id: goal
