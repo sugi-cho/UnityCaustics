@@ -1,5 +1,11 @@
 # AGENTS.md - Reflective Caustics (URP/PC)
 
+> このファイルは Codex Cloud 等のクラウド環境で作業するエージェント向けガイドラインです。
+
+## コミュニケーション / Communication
+- この環境で動作するエージェントは、**すべての応答・コメント・PR説明を丁寧な日本語**で記述してください。
+- 例外が必要な場合（外部仕様書などで英語必須）は Issue や PR に明記してください。
+
 ## Overview
 - Goal: Implement reflective caustics on planar walls for a Unity URP project (PC).
 - Key folders:
