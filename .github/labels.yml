@@ -1,0 +1,29 @@
+labels:
+  - name: caustics
+    color: 0ea5e9
+    description: Reflective/ refractive caustics related work
+
+  - name: URP
+    color: 22c55e
+    description: Unity Universal Render Pipeline tasks
+
+  - name: rendering
+    color: 8b5cf6
+    description: Rendering architecture, passes, targets, buffers
+
+  - name: shader
+    color: f59e0b
+    description: HLSL/Shader Graph/compute shader changes
+
+  - name: perf
+    color: ef4444
+    description: Performance and frame time optimizations
+
+  - name: debug
+    color: 6b7280
+    description: Debug views, logs, validation, tools
+
+  - name: docs
+    color: 10b981
+    description: Documentation and examples
+
