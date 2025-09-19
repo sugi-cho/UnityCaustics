@@ -1,8 +1,8 @@
 # 全体オーナー
-*                               @your-org/rendering-team
+*                               @sugi-cho
 
 # 反射カスティクス実装
-/Assets/CausticsReflective/     @your-org/rendering-team
+/Assets/CausticsReflective/     @sugi-cho,@codex
 
 # CI・運用まわり
-/.github/                        @your-org/infra-team
+/.github/                        @sugi-cho,@codex
