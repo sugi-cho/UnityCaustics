@@ -21,7 +21,7 @@ jobs:
             **/*.md
 
       - name: yamllint
-        uses: ibiqlik/action-yamllint@v4
+        uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: "."
           config_data: |
