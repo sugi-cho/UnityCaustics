@@ -1,0 +1,20 @@
+name: RC-011 – Benchmark
+description: 1080p/60fps目安の性能計測と既定値の確定
+title: "[RC-011] 1080p/60fpsベンチ & 既定パラメタ調整（RTX2060目安）"
+labels: ["perf","benchmark"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: 平面 2/4、各 512²/1024²、グリッド 512/1024 の組合せ計測
+        - label: Frame Debugger / RenderDoc / Profiler のスクショ添付
+        - label: 既定値と推奨範囲をREADMEに反映
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 既定設定で60fps（RTX2060想定）
+        - label: README に推奨値が明記

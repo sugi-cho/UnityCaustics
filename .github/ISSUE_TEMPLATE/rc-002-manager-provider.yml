@@ -1,0 +1,35 @@
+name: RC-002 – Manager & Provider
+description: 受光面登録と水面情報の集約
+title: "[RC-002] ReflectiveCausticsManager と IWaterSurfaceProvider の定義"
+labels: ["feature","shader","rendering"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目的 / Goal
+      value: |
+        水面情報（法線/高さ/行列）と Directional Light、各種パラメタの単一窓口を用意する。
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      value: |
+        - Scripts/IWaterSurfaceProvider.cs
+        - Scripts/ReflectiveCausticsManager.cs
+        - Scripts/DummyWaterProvider.cs（テスト用）
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: Provider のIF定義（NormalTex/HeightTex?/WaterToWorld/WaterSizeMeters/NormalTexelSize）
+        - label: Manager に Sun/Intensity/F0/JacobianGain/Tint 等の公開
+        - label: Register/Unregister & Receivers 列挙
+        - label: ダミーProviderの実装（パンするNormalなど）
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: Manager インスペクタから設定編集が可能
+        - label: プレイ時に Receivers が正しく列挙される

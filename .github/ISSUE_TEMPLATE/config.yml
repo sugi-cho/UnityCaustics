@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project Wiki
+    url: https://example.com/wiki
+    about: 内部ドキュメント（仕様・デザイン）はこちら

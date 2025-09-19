@@ -1,0 +1,8 @@
+# 全体オーナー
+*                               @your-org/rendering-team
+
+# 反射カスティクス実装
+/Assets/CausticsReflective/     @your-org/rendering-team
+
+# CI・運用まわり
+/.github/                        @your-org/infra-team

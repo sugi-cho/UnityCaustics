@@ -1,0 +1,18 @@
+name: RC-006 – Debug & UI
+description: 内部量の可視化とランタイム調整UI
+title: "[RC-006] デバッグ表示（R/ detJ/ 距離/シャドウ）とIMGUI"
+labels: ["debug","tools"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: 受光RT/R(θ)/detJ/距離/シャドウのオーバーレイ表示
+        - label: Intensity/F0/JacobianGain/Blur半径/合成モードのGUI
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 実行時に主要パラメタを操作でき即時反映

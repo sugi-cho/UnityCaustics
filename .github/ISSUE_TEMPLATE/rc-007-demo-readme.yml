@@ -1,0 +1,27 @@
+name: RC-007 – Demo & README
+description: 最小デモシーンと手順書の整備
+title: "[RC-007] デモシーン作成とREADME（セットアップ手順）"
+labels: ["demo","docs"]
+body:
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      value: |
+        - Demo/Scenes/ReflectiveCaustics_Demo.unity
+        - README.md（導入/セットアップ/制約/パラメタ説明）
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: プール＋2面の壁（ReceiverPlane x2）
+        - label: ダミー水面（パンするNormal）
+        - label: 1080p 既定で見栄え良く
+        - label: README（手順/制約/トラブルシュート）
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 新規プロジェクトへ移植しても即再現できる

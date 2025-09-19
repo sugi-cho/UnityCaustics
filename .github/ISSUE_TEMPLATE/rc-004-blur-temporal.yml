@@ -1,0 +1,27 @@
+name: RC-004 – Blur & Temporal
+description: 生成RTのセパレートガウシアン & 任意のテンポラル蓄積
+title: "[RC-004] 生成RTのブラー（横/縦）とTemporal蓄積（任意）"
+labels: ["shader","fx","perf"]
+body:
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      value: |
+        - Shaders/ReflectiveCausticsBlur.shader
+        - Manager へのブラー/Temporal設定
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: 横→縦のセパレートガウシアンを実装（半径可変）
+        - label: Ping-Pong RT によるTemporal係数（任意）
+        - label: プロファイル計測で既定値決定
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 半径で鋭さ/柔らかさが調整可能
+        - label: Temporal有効時に微小ノイズが低減

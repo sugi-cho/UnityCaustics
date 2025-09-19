@@ -1,0 +1,20 @@
+name: RC-012 – QA & Cleanup
+description: コメント/Nullガード/例外処理の整備とQAチェック
+title: "[RC-012] コード整備（コメント/Nullガード/例外処理）とQAチェック"
+labels: ["qa","cleanup"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: Null/リーク/停止時破棄/再入に対する防御
+        - label: コンソール警告0件化
+        - label: QAチェック（シーン切替/解像度変更/Alt+Tab/ライト方向連続変更/RT再確保）
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 既知の警告/例外が0
+        - label: QAチェックを全てPASS

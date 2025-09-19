@@ -1,0 +1,35 @@
+name: RC-003 – GenPass
+description: 反射カスティクス生成パス（BeforeRenderingTransparents）
+title: "[RC-003] ReflectiveCausticsRendererFeature + GenPass（生成）"
+labels: ["URP","shader","rendering","pc"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目的 / Goal
+      value: |
+        各受光平面ごとに水面を走査し、反射方向→レイ-平面交点→平面UV→受光RTへ加算で生成。
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      value: |
+        - Scripts/ReflectiveCausticsRendererFeature.cs
+        - Scripts/ReflectiveCausticsGenPass.cs
+        - Shaders/ReflectiveCausticsGen.shader（Blend One One）
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: RendererFeature で GenPass を BeforeRenderingTransparents に挿入
+        - label: 各受光平面の RT を Clear(黒)
+        - label: Procedural Draw（グリッド×クアッド）で水面を走査
+        - label: VS/PS で R(θ) と ヤコビアン近似により強度を算出し加算
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 受光RTにパターンが生成される（デバッグ表示で確認）
+        - label: 受光平面の数に応じてRTが独立更新される

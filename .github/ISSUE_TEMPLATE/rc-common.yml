@@ -1,0 +1,79 @@
+name: RC – Generic Issue
+description: 反射カスティクス（URP/PC）用の汎用テンプレート
+title: "[RC-XXX] <短い要約>"
+labels: ["caustics","URP","rendering","pc"]
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景 / Background
+      description: 何のためのIssueか（1–3行）
+      placeholder: 例）壁面に反射カスティクスを合成する土台が未整備のため…
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目的 / Goal
+      description: このIssue完了で何ができるか（1–3点）
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: スコープ / Scope
+      description: 含む / 含まない を列挙
+      placeholder: |
+        含む:
+          - A
+          - B
+        含まない:
+          - X
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      placeholder: 作成/更新するファイル・クラス・シーン名
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: 仕様の確認
+        - label: 実装
+        - label: 単体テスト/動作確認
+        - label: ドキュメント更新
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 機能要件を満たす
+        - label: 1080p/60fpsでの動作（代表ケース）
+        - label: 警告/例外なし
+  - type: textarea
+    id: demo
+    attributes:
+      label: 動作確認 / How to Demo
+      placeholder: シーン/手順/デバッグUIの使い方
+  - type: input
+    id: deps
+    attributes:
+      label: 依存関係 / Dependencies
+      placeholder: RC-00X, RC-00Y
+  - type: textarea
+    id: risks
+    attributes:
+      label: リスク / 注意点
+      placeholder: 性能・精度・並列更新など
+  - type: textarea
+    id: refs
+    attributes:
+      label: 参考 / References
+      placeholder: 関連PR/ドキュメント/外部資料のURL
+  - type: textarea
+    id: codex
+    attributes:
+      label: Codex 提示プロンプト（任意）
+      description: Codex Cloud に渡す要約タスク（PRで closes # を付与する旨を含める）
+      placeholder: |
+        例）URP の RendererFeature と GenPass の骨格を実装し、受光RTを生成。
+        受け入れ基準を満たしたら eature/rc-003 でPRを起こし closes #<issue> を含めてください。

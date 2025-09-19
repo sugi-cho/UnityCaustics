@@ -1,0 +1,28 @@
+name: RC-005 – Composite Pass
+description: スクリーン空間で該当平面のみに合成（AfterRenderingTransparents）
+title: "[RC-005] ReflectiveCausticsCompositePass（スクリーン空間合成）"
+labels: ["URP","rendering"]
+body:
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      value: |
+        - Scripts/ReflectiveCausticsCompositePass.cs
+        - Shaders/ReflectiveCausticsComposite.shader
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: 深度→ワールド座標を復元
+        - label: 平面距離 |dot(N, X-O)| < tol でマスク
+        - label: 平面UVで受光RTをサンプル（乗算/加算 切替）
+        - label: 影領域の抑制（メインライトのスクリーンシャドウ参照）
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 壁以外（床/手前物体）には乗らない
+        - label: 影内で弱くなるオプションが機能

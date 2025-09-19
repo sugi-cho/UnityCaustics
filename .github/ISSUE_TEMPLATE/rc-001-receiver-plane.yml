@@ -1,0 +1,33 @@
+name: RC-001 – CausticsReceiverPlane
+description: 平面受光コンポーネント（壁/天井）の実装
+title: "[RC-001] CausticsReceiverPlane: 平面受光コンポーネントの実装"
+labels: ["feature","rendering","pc","caustics"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目的 / Goal
+      value: |
+        平面受光面のサイズ/解像度/基底行列/RenderTexture ライフサイクル管理を提供する。
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: 成果物 / Deliverables
+      value: |
+        - Scripts/CausticsReceiverPlane.cs（Prefab化推奨）
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: Transform から基底 T/B/N と PlaneToWorld/WorldToPlane 行列を構築
+        - label: RenderTexture（R16F、既定1024x512）生成・破棄
+        - label: twoSided/planeDistanceTolerance/sizeMeters/resolution の公開
+        - label: OnEnable/OnDisable で Manager に Register/Unregister
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 複数配置時に RT が個別確保・解放される
+        - label: 実行中にサイズ/解像度変更で RT 再確保が正しく動作する

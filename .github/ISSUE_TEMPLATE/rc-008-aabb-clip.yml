@@ -1,0 +1,18 @@
+name: RC-008 – AABB Clip
+description: 合成領域を平面のスクリーンAABBに限定して負荷削減
+title: "[RC-008] 合成領域のAABBクリップによる描画負荷削減"
+labels: ["perf","rendering"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: 平面の4隅をスクリーンへ投影しAABB算出（画面外クリップ対応）
+        - label: Blit 範囲をAABBに限定
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 受光範囲が小さいケースでGPU時間が短縮

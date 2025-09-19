@@ -1,0 +1,18 @@
+name: RC-010 – ShaderGraph Injection
+description: Subgraph によるマテリアル注入での合成パス提供
+title: "[RC-010] マテリアル注入（Shader Graph Subgraph）での合成パス提供"
+labels: ["shader-graph","integration"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: タスク / Tasks
+      options:
+        - label: Subgraph（WorldPos/N/PlaneParams/CausticsRT）を提供
+        - label: URP Lit 互換ノード構成
+  - type: checkboxes
+    id: ac
+    attributes:
+      label: 受け入れ基準 / Acceptance Criteria
+      options:
+        - label: 適用したマテリアルのみカスティクスが乗る
