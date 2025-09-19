@@ -19,6 +19,7 @@ jobs:
         with:
           globs: |
             **/*.md
+            !**/node_modules/**
 
       - name: yamllint
         uses: ibiqlik/action-yamllint@v3
