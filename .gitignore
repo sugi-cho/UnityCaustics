@@ -1,0 +1,57 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+
+# Unity cache
+/[Aa]rtifacts/
+/[Pp]ackages/com.unity.package-manager-ui/
+
+# IDE / tooling
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.unityproj
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vs/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# TextMesh Pro
+[Tt]extMesh Pro/
+
+# Addressables
+/[Bb]uild/[Aa]ddressables*/
+
+# Crash and profiler logs
+sysinfo.txt
+*.stacktrace
+
+# Android keystore
+*.keystore
+*.jks
+
+# Generated StreamingAssets
+/[Aa]ssets/StreamingAssets/
+
+# Packages lock (auto-generated unless version control is desired)
+Packages/packages-lock.json
+
+# Unity packages
+*.unitypackage
