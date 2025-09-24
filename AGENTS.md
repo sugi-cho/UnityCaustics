@@ -80,6 +80,56 @@ If any lints fail, fix them before creating a PR.
   README を更新してください。Lint を通し、スクリーンショットを添付した PR
   をお願いします。」
 
+## CIエラー時のCodexCloud連携テンプレート
+
+CodexCloudを使ってCI失敗をリカバリーするときは、以下の定型フローをそのままコピー＆調整して利用してください。
+
+### ステップ1：エラーの確認
+
+- GitHub Actionsのログで失敗したジョブ（GameCIのテスト／ビルド）を確認する
+- CodexCloudにはCIログが転送されないため、原因がわかる最小限のログを抜粋しておく
+- 抜粋するログには、失敗したブランチ名がわかる一文を添える
+
+例:
+```
+The build failed with the following Unity error:
+Shader error in 'ReflectiveCausticsGen': undeclared identifier '_CameraDepthTexture'
+Please fix RC-003 branch (feature/rc-003-gen-pass).
+```
+
+### ステップ2：CodexCloudへの修正依頼
+
+CodexCloudでは同じブランチを指定して依頼します。以下のひな形をそのまま貼り付け、必要な箇所を置き換えてください。
+
+```
+Fix CI error on branch <branch-name>.
+
+Error log:
+<貼り付けたログ抜粋>
+
+Goal:
+- <修正してほしいポイントを書き出す>
+- Push fix to same branch
+```
+
+### ステップ3：PRレビューとマージの進め方
+
+1. PRをオープンしたら `closes #<issue-number>` を必ず本文に含める。CI（lint + Unity test/build）が自動で走る。
+2. 内容確認：不要ファイルが含まれないか、AGENTS.mdやIssueのAcceptance Criteriaを満たしているかを目視でチェックする。
+3. 追加レビュー：必要に応じてPRコメントで `@codex review` を呼び出し、Codexから改善提案をもらう。
+4. 修正ラウンド：自分またはCodexが修正をpushするとCIが再実行される。グリーンになるまで繰り返す。
+5. マージ条件：CI OK、目視レビュー OK、（必要なら）`@codex review` OK の状態でマージし、`main` の実行可能性を常に維持する。
+
+### PRごとのチェックリスト
+
+- `closes #<issue-number>` が本文に含まれていること
+- 不要な生成物（`Library/`, `Temp/` など）が入っていないこと
+- CI（lint / test / build）がグリーンであること
+- PR本文に動作確認手順が記載されていること
+- Acceptance Criteriaを満たしていること
+- `@codex review` を必要に応じて実施済みであること
+
+
 ## Definition of Done (project-wide)
 
 - CI（テスト + Windows ビルド）が成功している
