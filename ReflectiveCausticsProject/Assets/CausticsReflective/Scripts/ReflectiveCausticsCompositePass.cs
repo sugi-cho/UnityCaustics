@@ -32,6 +32,7 @@ namespace CausticsReflective
         private RenderTargetIdentifier _colorTarget;
         private RenderTargetIdentifier _depthTarget;
         private bool _multiplyBlend;
+        private bool _tempColorAllocated;
 
         public ReflectiveCausticsCompositePass(Material material)
         {
@@ -78,6 +79,7 @@ namespace CausticsReflective
                 descriptor.bindMS = false;
                 descriptor.enableRandomWrite = false;
                 cmd.GetTemporaryRT(TempColorId, descriptor, FilterMode.Bilinear);
+                _tempColorAllocated = true;
 
                 Blit(cmd, _colorTarget, TempColorId);
 
@@ -91,7 +93,11 @@ namespace CausticsReflective
 
         public override void OnCameraCleanup(CommandBuffer cmd)
         {
-            cmd.ReleaseTemporaryRT(TempColorId);
+            if (_tempColorAllocated)
+            {
+                cmd.ReleaseTemporaryRT(TempColorId);
+                _tempColorAllocated = false;
+            }
         }
 
         private static void PopulateShaderData(CommandBuffer cmd, ReflectiveCausticsManager manager, IReadOnlyList<CausticsReceiverPlane> receivers)
