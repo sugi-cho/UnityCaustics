@@ -52,6 +52,8 @@ sysinfo.txt
 
 # Packages lock (auto-generated unless version control is desired)
 Packages/packages-lock.json
+**/Packages/packages-lock.json
 
 # Unity packages
 *.unitypackage
+
