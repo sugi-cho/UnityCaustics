@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.Universal;
 
 namespace CausticsReflective
@@ -37,22 +38,58 @@ namespace CausticsReflective
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
+            CommandBuffer cmd = CommandBufferPool.Get(_profilingSampler.name);
+            bool rendered = TryRender(cmd);
+
+            if (rendered)
+            {
+                context.ExecuteCommandBuffer(cmd);
+            }
+
+            CommandBufferPool.Release(cmd);
+        }
+
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
             if (_material == null)
             {
                 return;
             }
 
+            using var builder = renderGraph.AddUnsafePass<PassData>(_profilingSampler.name, out var passData);
+            passData.Pass = this;
+
+            builder.AllowPassCulling(false);
+            builder.SetRenderFunc((PassData data, UnsafeGraphContext context) =>
+            {
+                var cmd = CommandBufferHelpers.GetNativeCommandBuffer(context.cmd);
+                data.Pass.TryRender(cmd);
+            });
+        }
+
+        private class PassData
+        {
+            internal ReflectiveCausticsGenPass Pass;
+        }
+
+        private bool TryRender(CommandBuffer cmd)
+        {
+            if (_material == null)
+            {
+                return false;
+            }
+
             var manager = ReflectiveCausticsManager.Instance;
             if (manager == null)
             {
-                return;
+                return false;
             }
 
             IWaterSurfaceProvider waterProvider = manager.Water;
             IReadOnlyList<CausticsReceiverPlane> receivers = ReflectiveCausticsManager.Receivers;
-            if (waterProvider == null || receivers.Count == 0)
+            if (waterProvider == null || receivers == null || receivers.Count == 0)
             {
-                return;
+                return false;
             }
 
             Texture normalTex = waterProvider.NormalTex != null ? waterProvider.NormalTex : Texture2D.normalTexture;
@@ -67,7 +104,7 @@ namespace CausticsReflective
             int instanceCount = gridX * gridY;
             if (instanceCount <= 0)
             {
-                return;
+                return false;
             }
 
             Vector3 sunDir = Vector3.down;
@@ -83,7 +120,6 @@ namespace CausticsReflective
 
             sunDir.Normalize();
 
-            CommandBuffer cmd = CommandBufferPool.Get(_profilingSampler.name);
             using (new ProfilingScope(cmd, _profilingSampler))
             {
                 _material.SetTexture(WaterNormalTexId, normalTex);
@@ -132,8 +168,7 @@ namespace CausticsReflective
                 }
             }
 
-            context.ExecuteCommandBuffer(cmd);
-            CommandBufferPool.Release(cmd);
+            return true;
         }
     }
 }
