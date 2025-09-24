@@ -62,7 +62,7 @@ Shader "CausticsReflective/ReflectiveCausticsGen"
 
             float3 SampleWaterNormal(float2 uv)
             {
-                float3 encoded = SAMPLE_TEXTURE2D(_WaterNormalTex, sampler_WaterNormalTex, uv).xyz;
+                float3 encoded = SAMPLE_TEXTURE2D_LOD(_WaterNormalTex, sampler_WaterNormalTex, uv, 0).xyz;
                 float3 normalTS = normalize(encoded * 2.0 - 1.0);
                 return normalTS;
             }
@@ -181,3 +181,4 @@ Shader "CausticsReflective/ReflectiveCausticsGen"
         }
     }
 }
+

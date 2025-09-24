@@ -64,7 +64,8 @@ Shader "Hidden/CausticsReflective/Composite"
             Varyings Vert(Attributes input)
             {
                 Varyings output;
-                output.positionCS = TransformVertex(input.positionOS);
+                float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
+                output.positionCS = TransformWorldToHClip(positionWS);
                 output.uv = input.uv;
                 return output;
             }
@@ -186,3 +187,4 @@ Shader "Hidden/CausticsReflective/Composite"
         }
     }
 }
+

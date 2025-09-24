@@ -14,7 +14,6 @@ namespace CausticsReflective
         private static readonly int PlaneInfoId = Shader.PropertyToID("_RC_PlaneInfo");
         private static readonly int TintIntensityId = Shader.PropertyToID("_RC_TintIntensity");
         private static readonly int MultiplyBlendId = Shader.PropertyToID("_RC_MultiplyBlend");
-        private static readonly int TempColorId = Shader.PropertyToID("_RC_TempColorTexture");
         private static readonly int[] CausticsTextureIds =
         {
             Shader.PropertyToID("_RC_CausticsTex0"),
@@ -29,10 +28,10 @@ namespace CausticsReflective
         private readonly ProfilingSampler _profilingSampler = new("Reflective Caustics Composite");
         private readonly Material _material;
 
-        private RenderTargetIdentifier _colorTarget;
-        private RenderTargetIdentifier _depthTarget;
+        private RTHandle _colorTarget;
+        private RTHandle _depthTarget;
+        private RTHandle _tempColor;
         private bool _multiplyBlend;
-        private bool _tempColorAllocated;
 
         public ReflectiveCausticsCompositePass(Material material)
         {
@@ -41,21 +40,21 @@ namespace CausticsReflective
             ConfigureInput(ScriptableRenderPassInput.Depth);
         }
 
-        public void Setup(RenderTargetIdentifier colorTarget, RenderTargetIdentifier depthTarget, bool multiplyBlend)
+        public void Setup(RTHandle colorTarget, RTHandle depthTarget, bool multiplyBlend)
         {
             _colorTarget = colorTarget;
             _depthTarget = depthTarget;
             _multiplyBlend = multiplyBlend;
         }
 
-        public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
-        {
-            ConfigureTarget(_colorTarget, _depthTarget);
-        }
-
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             if (_material == null)
+            {
+                return;
+            }
+
+            if (_colorTarget == null)
             {
                 return;
             }
@@ -78,13 +77,13 @@ namespace CausticsReflective
                 descriptor.msaaSamples = 1;
                 descriptor.bindMS = false;
                 descriptor.enableRandomWrite = false;
-                cmd.GetTemporaryRT(TempColorId, descriptor, FilterMode.Bilinear);
-                _tempColorAllocated = true;
 
-                Blit(cmd, _colorTarget, TempColorId);
+                RenderingUtils.ReAllocateIfNeeded(ref _tempColor, descriptor, FilterMode.Bilinear, TextureWrapMode.Clamp, name: "_RC_TempColorTexture");
+
+                Blitter.BlitCameraTexture(cmd, _colorTarget, _tempColor);
 
                 cmd.SetGlobalFloat(MultiplyBlendId, _multiplyBlend ? 1f : 0f);
-                Blit(cmd, TempColorId, _colorTarget, _material);
+                Blitter.BlitCameraTexture(cmd, _tempColor, _colorTarget, _material, 0);
             }
 
             context.ExecuteCommandBuffer(cmd);
@@ -93,10 +92,10 @@ namespace CausticsReflective
 
         public override void OnCameraCleanup(CommandBuffer cmd)
         {
-            if (_tempColorAllocated)
+            if (_tempColor != null)
             {
-                cmd.ReleaseTemporaryRT(TempColorId);
-                _tempColorAllocated = false;
+                _tempColor.Release();
+                _tempColor = null;
             }
         }
 
@@ -113,7 +112,7 @@ namespace CausticsReflective
                     var receiver = receivers[i];
                     WorldToPlaneBuffer[i] = receiver.WorldToPlane;
                     PlaneInfoBuffer[i] = new Vector4(receiver.sizeMeters.x, receiver.sizeMeters.y, receiver.planeDistanceTolerance, receiver.twoSided ? 1f : 0f);
-                    var texture = receiver.CausticsRT != null ? receiver.CausticsRT : Texture2D.blackTexture;
+                    Texture texture = receiver.CausticsRT != null ? (Texture)receiver.CausticsRT : Texture2D.blackTexture;
                     cmd.SetGlobalTexture(CausticsTextureIds[i], texture);
                 }
                 else
