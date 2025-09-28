@@ -1,4 +1,4 @@
----
+﻿---
 name: RC-003 – GenPass
 description: 反射カスティクス生成パス（BeforeRenderingTransparents）
 title: "[RC-003] ReflectiveCausticsRendererFeature + GenPass（生成）"
