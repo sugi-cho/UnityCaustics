@@ -1,4 +1,4 @@
----
+﻿---
 name: RC-002 – Manager & Provider
 description: 受光面登録と水面情報の集約
 title: "[RC-002] ReflectiveCausticsManager と IWaterSurfaceProvider の定義"
